@@ -20,9 +20,6 @@ export function transfer(
   if (!Number.isFinite(amount) || amount <= 0) {
     throw new Error(`transfer amount must be positive, got ${amount}`);
   }
-  if (from.id === to.id) {
-    throw new Error(`self-transfer blocked: ${from.id} cannot pay itself`);
-  }
   if (from.balance < amount) {
     throw new Error(`overdraft blocked: ${from.id} holds ${from.balance}, ${amount} requested`);
   }
