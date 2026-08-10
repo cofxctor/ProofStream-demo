@@ -80,3 +80,6 @@ test('balanceAt ignores accounts it was not asked about', () => {
   const log: TransferRecord[] = [{ from: 'carol', to: 'dave', amount: 30, timestamp: 100 }];
   assert.equal(balanceAt(log, 'alice', 100, 999), 100);
 });
+test('blocks a self-transfer', () => {
+  assert.throws(() => transfer(alice(), alice(), 10), /self-transfer/);
+});
